@@ -102,13 +102,13 @@ Para se familiarizar, sugerimos que você navegue por alguns exemplos paradigmá
 
 * **Busca de datas**: outra situação comum é quando você precisa preencher um formulário e fazer uma busca de datas para acessar as publicações. É caso por exemplo do script [ba_salvador.py](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_salvador.py), que raspa as informações da capital baiana.
 
-* **Consulta via APIs**: pode ser também que ao analisar as requisições do site, você descubra uma API escondida, com dados dos documentos já organizadas em um arquivo JSON, por exemplo. É o caso do raspador de [Natal](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/rn_natal.py). Na Escola de Dados, é possível encontrar um webinar sobre [raspagem de dados por meio de "APIs escondidas"](https://escoladedados.org/2021/05/como-descobrir-apis-escondidas-para-facilitar-a-raspagem-de-dados/), que pode ser útil para quem está começando.
+* **Consulta via APIs**: pode ser também que ao analisar as requisições do site, você descubra uma API escondida, com dados dos documentos já organizados em um arquivo JSON, por exemplo. É o caso do raspador de [Natal](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/rn_natal.py). Na Escola de Dados, é possível encontrar um webinar sobre [raspagem de dados por meio de "APIs escondidas"](https://escoladedados.org/2021/05/como-descobrir-apis-escondidas-para-facilitar-a-raspagem-de-dados/), que pode ser útil para quem está começando.
 
 ### Casos particulares
 
 Você talvez tenha reparado que alguns raspadores praticamente não possuem código e quase se repetem entre si. Neste caso, tratam-se de municípios que compartilham o mesmo sistema de publicação. Então, tratamos eles conjuntamente, modificando apenas o necessário de raspador para raspador, ao invés de repetir o mesmo código em cada arquivo. É o caso, por exemplo, de cidades em Santa Catarina como [**Abdon Batista**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_abdon_batista.py) e [**Agrolândia**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_agrolandia.py).
 
-Existem raspadores que não têm nome de cidade pois diversos municípios usam a mesma plataforma para publicar seus Diários Oficiais. São normalmente sites de associações de municípios. É o caso de [**ba_associacao_municipios.py**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_associacao_municipios.py).
+Existem raspadores que não têm nome de cidade, pois diversos municípios usam a mesma plataforma para publicar seus Diários Oficiais. São normalmente sites de associações de municípios. É o caso de [**ba_associacao_municipios.py**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_associacao_municipios.py).
 
 Mas para uma primeira contribuição não se preocupe com esses casos particulares. Vamos voltar ao nosso exemplo e ver como construir um raspador completo para apenas uma cidade.
 
@@ -117,7 +117,7 @@ Mas para uma primeira contribuição não se preocupe com esses casos particular
 Por padrão, todos os raspadores começam importando alguns pacotes. Vejamos quais são:
 
 * `import datetime`: pacote para lidar com datas.
-* `from gazette.items import Gazette`: Chamamos de `Gazette` os arquivo de DOs encontrados pelos raspadores, ele irá armazenar também campos de metadados para cada publicação. 
+* `from gazette.items import Gazette`: Chamamos de `Gazette` os arquivo de DOs encontrados pelos raspadores, ele irá armazenar também campos de metadados para cada publicação.
 * `from gazette.spiders.base import BaseGazetteSpider`: é o raspador (spider) base do projeto, que já traz algumas funcionalidades úteis.
 
 ### Parâmetros iniciais
@@ -125,7 +125,7 @@ Por padrão, todos os raspadores começam importando alguns pacotes. Vejamos qua
 Cada raspador traz uma [classe em Python](https://www.youtube.com/watch?v=52ns4X7Ny6k&list=PLUukMN0DTKCtbzhbYe2jdF4cr8MOWClXc&index=41), que executa determinadas rotinas para cada página dos sites que publicam Diários Oficiais. Todas as classes possuem pelo menos as informações básicas abaixo:
 
 * `name`: Nome do raspador no mesmo padrão do nome do arquivo, sem a extensão. Exemplo: `sp_paulinia`.
-* `TERRITORY_ID`: código da cidade no IBGE. Confira a o arquivo [`territories.csv`](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/resources/territories.csv) do projeto para descobrir o código da sua cidade. Exemplo: `2905206`.
+* `TERRITORY_ID`: código da cidade no IBGE. Confira o arquivo [`territories.csv`](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/resources/territories.csv) do projeto para descobrir o código da sua cidade. Exemplo: `3536505`.
 * `allowed_domains`: Domínios nos quais o raspador irá atuar. Tenha atenção aos colchetes. Eles indicam que se trata de uma lista, ainda que tenha apenas um elemento. Exemplo: `["paulinia.sp.gov.br"]`
 * `start_urls`: lista com URLs de início da navegação do raspador (normalmente apenas uma). A resposta dessa requisição inicial é encaminhada para a variável `response`, do método padrão do Scrapy chamado `parse`. Veremos mais sobre isso em breve. Novamente, atenção aos colchetes. Exemplo:`["http://www.paulinia.sp.gov.br/semanarios/"]`
 * `start_date`: Representação de data no formato ano, mês e dia (YYYY, M, D) com `datetime.date`. É a data inicial da publicação do Diário Oficial no sistema questão, ou seja, a data da primeira publicação disponível online. Encontre esta data pesquisando e a insira manualmente nesta variável. Exemplo: `datetime.date(2017, 4, 3)`.
@@ -134,7 +134,7 @@ Cada raspador traz uma [classe em Python](https://www.youtube.com/watch?v=52ns4X
 
 Além disso, cada raspador também precisa retornar algumas informações por padrão. Isso acontece usando a expressão `yield` nos itens criados do tipo `Gazette`.
 
-* `date`: A data da publicação do diário. 
+* `date`: A data da publicação do diário.
 * `file_urls`: Retorna as URLs da publicação do DO como uma lista. Um documento pode ter mais de uma URL, mas não é algo comum.
 * `power`: Aceita os parâmetros `executive` ou `executive_legislative`. Aqui, definimos se o DO tem informações apenas do poder executivo ou também do legislativo. Para definir isso, é preciso olhar manualmente nas publicações se há informações da Câmara Municipal agregadas no mesmo documento, por exemplo.
 * `is_extra_edition`: Sinalizamos aqui se é uma edição extra do Diário Oficial ou não. Edições extras são edições completas do diário que são publicadas fora do calendário previsto.
@@ -220,7 +220,7 @@ Já o comando `response.css("a")` nos retornaria informações sobre todos os li
 
 O modo mais fácil para de fato identificar os tais seletores que iremos utilizar é por meio do "Inspetor Web". Trata-se de uma função disponível em praticamente todos navegadores navegadores modernos. Basta clicar do lado direito na página e selecionar a opção "Inspecionar". Assim, podemos visualizar o código HTML, copiar e buscar por seletores XPath e CSS.
 
-Experimente rodar o comando `response.xpath("//div[@class='container body-content']//div[@class='row']//a[contains(@href, 'AbreSemanario')]/@href")` e ver os resultados. Este seletor XPath busca primeiro por tags `div` em qualquer lugar da página, que tenha como classe `container body-content`. Dentro destas tags, buscamos então por outras `div` com a classe `row`. E, em qualquer lugar dentro destas últimas, por fim, buscamos por tags `a` (links) cujo atributo `href` contenha a palavra `AbreSemanario` e pedimos para retornar o valor apenas do atributo `href`. 
+Experimente rodar o comando `response.xpath("//div[@class='container body-content']//div[@class='row']//a[contains(@href, 'AbreSemanario')]/@href")` e ver os resultados. Este seletor XPath busca primeiro por tags `div` em qualquer lugar da página, que tenha como classe `container body-content`. Dentro destas tags, buscamos então por outras `div` com a classe `row`. E, em qualquer lugar dentro destas últimas, por fim, buscamos por tags `a` (links) cujo atributo `href` contenha a palavra `AbreSemanario` e pedimos para retornar o valor apenas do atributo `href`.
 
 Existem várias formas de escrever seletores para o mesmo objeto. Você pode ter uma ideia de como montar o seletor inspecionando a página que disponibiliza os DOs.
 
