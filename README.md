@@ -1,12 +1,10 @@
 # Raspe um Diário Oficial e contribua com o Querido Diário 🕷️📚
 
-O [Querido Diário](https://queridodiario.ok.org.br/) é um projeto de código aberto da [Open Knowledge Brasil](https://ok.org.br/) que utiliza Python e outras tecnologias para libertar informações do Diário Oficial (DO) das administrações públicas no Brasil. A iniciativa mapeia, baixa e converte todas as páginas das publicações para um formato mais acessível, a fim de facilitar a análise de dados.
+O [Querido Diário](https://queridodiario.ok.org.br/) é um projeto de código aberto da [Open Knowledge Brasil](https://ok.org.br/) que utiliza Python e outras tecnologias para libertar informações do Diário Oficial (DO) das administrações públicas no Brasil. A iniciativa mapeia, baixa e extrai todas as páginas das publicações para um formato mais acessível, a fim de facilitar e automatizar a utilização de suas informações.
 
 Neste tutorial, mostraremos orientações gerais para construir um raspador e contribuir com o projeto Querido Diário.
 
-Se você prefere uma apresentação sobre o projeto em vídeo, confira o workshop [Querido Diário: hoje eu tornei um Diário Oficial acessível](https://escoladedados.org/coda2020/workshop-querido-diario/) da Ana Paula Gomes no [Coda.Br 2020](https://escoladedados.org/coda2020). Ainda que mudanças recentes possam ter alterado detalhes apresentados na oficina, o vídeo é uma ótima complementação a este tutorial. Você pode utilizar a *timestamp* na descrição do vídeo para assistir apenas trechos de seu interesse.
-
-## Sumário 📑
+## Sumário 📑  [TODO: corrigir refs]
   1. [Colabore com o tutorial](#colabore-com-o-tutorial-)
   2. [Mapeando e escolhendo Diários Oficiais](#mapeando-e-escolhendo-diarios-oficiais-)
   3. [Construindo o raspador](#construindo-o-raspador-)
@@ -26,113 +24,116 @@ Se você prefere uma apresentação sobre o projeto em vídeo, confira o worksho
 
 ## Colabore com o tutorial 💪
 
-Este documento está em constante construção. Você pode ajudar a melhorar esta documentação fazendo *pull requests* neste repositório.
+Este documento está em constante construção. Você pode ajudar a melhorar esta documentação fazendo *pull requests* (PR) neste repositório.
 
 ## Mapeando e escolhendo Diários Oficiais 🔎
 
-Existem formas de colaborar com o Querido Diário sem precisar programar. Você pode participar do [Censo](https://censo.ok.org.br/), por exemplo, e ajudar a mapear os Diários Oficiais de todos os municípios brasileiros.
+Para por a mão na massa e construir seu raspador, você pode começar “adotando” uma cidade. Primeiro, encontre uma cidade que ainda não esteja listada no [arquivo CITIES.md](https://github.com/okfn-brasil/querido-diario/blob/main/CITIES.md).
 
-Se você quiser botar a mão na massa e construir seu raspador, pode começar “adotando” uma cidade. Primeiro, encontre uma cidade que ainda não esteja listada no [arquivo CITIES.md do repositório](https://github.com/okfn-brasil/querido-diario/blob/main/CITIES.md).
+Vale também dar uma olhada na seção [Issues](https://github.com/okfn-brasil/querido-diario/issues) e [Pull Requests](https://github.com/okfn-brasil/querido-diario/pulls). Assim, você consegue checar se já existe um raspador para a cidade escolhida a caminho de ser incorporado ao projeto (*Pull Requests*) ou se há outras pessoas trabalhando no código para o município (*Issues*).
 
-O endereço do repositório do projeto é: https://github.com/okfn-brasil/querido-diario/
-
-Antes de começar a trabalhar, vale também dar uma olhada na seção [Issues](https://github.com/okfn-brasil/querido-diario/issues) e [Pull Requests](https://github.com/okfn-brasil/querido-diario/pulls). Assim, você consegue checar se já existe um raspador para a cidade escolhida que ainda não tenha sido incorporado ao projeto (*Pull Requests*) ou se há outras pessoas trabalhando no código para o município (*Issues*).
-
-Se o raspador da sua cidade não consta como feito no [arquivo CITIES.md do repositório](https://github.com/okfn-brasil/querido-diario/blob/main/CITIES.md), não está na seção [Issues](https://github.com/okfn-brasil/querido-diario/issues), nem na aba de [Pull requests](https://github.com/okfn-brasil/querido-diario/pulls), então, crie uma *Issue* nova para anunciar que você irá trabalhar no raspador da cidade escolhida.
+Se o raspador da sua cidade não consta como feito no [arquivo CITIES.md](https://github.com/okfn-brasil/querido-diario/blob/main/CITIES.md), não está na seção [Issues](https://github.com/okfn-brasil/querido-diario/issues), nem na aba de [Pull requests](https://github.com/okfn-brasil/querido-diario/pulls), então, crie uma *Issue* nova para anunciar que você irá trabalhar no raspador da cidade escolhida.
 
 ## Construindo o raspador 💻
 
-Para acompanhar o tutorial e construir um raspador, é necessário instalar e conhecer algo sobre os seguintes softwares:
+Para acompanhar o tutorial e construir um raspador, é necessário instalar e conhecer um pouco sobre os softwares abaixo. Já incluímos indicação de materiais caso você não se sinta confortável com alguma destas tecnologias.
 
-- Uso do terminal
-- [Python](https://www.python.org/) e o pacote Scrapy
-- [Git](https://git-scm.com/) e Github
-- HTML,CSS,XPath
-
-Se você não se sente confortável com estas tecnologias, sugerimos os seguintes materiais:
-
-- [Python para zumbis](https://www.youtube.com/watch?v=YO58tXerKDc&list=PLUukMN0DTKCtbzhbYe2jdF4cr8MOWClXc)
-
-- [Tutorial da documentação do Scrapy](https://docs.scrapy.org/en/latest/intro/tutorial.html)
-
-- [Introdução a XPath para raspagem de dados](https://escoladedados.org/tutoriais/xpath-para-raspagem-de-dados-em-html/)
-
-- [Git Handbook](https://guides.github.com/introduction/git-handbook/)
-
+- **Uso do terminal.**   
+(Sugestão: [TODO: incluir])
+- **[Python](https://www.python.org/) e o pacote Scrapy.**  
+(Sugestão: [Python para zumbis](https://www.youtube.com/watch?v=YO58tXerKDc&list=PLUukMN0DTKCtbzhbYe2jdF4cr8MOWClXc), [Tutorial do Scrapy](https://docs.scrapy.org/en/latest/intro/tutorial.html))
+- **[Git](https://git-scm.com/) e Github.**  
+(Sugestão: [Git Handbook](https://guides.github.com/introduction/git-handbook/))
+- **HTML,CSS,XPath.**    
+(Sugestão: [Introdução a XPath para raspagem de dados](https://escoladedados.org/tutoriais/xpath-para-raspagem-de-dados-em-html/))
+ 
 ## Configurando um ambiente de desenvolvimento 🌱
 
-[Faça um fork do repositório](https://docs.github.com/pt/github/getting-started-with-github/quickstart/fork-a-repo) do Querido Diário na sua conta no Github.
+[Faça um fork](https://docs.github.com/pt/github/getting-started-with-github/quickstart/fork-a-repo) do [repositório do Querido Diário](https://github.com/okfn-brasil/querido-diario) na sua conta no Github. No seu fork, copie o endereço HTTPS disponível ao clicar no botão “Code”.
 
-Em seguida, clone este novo repositório para seu computador e crie uma nova branch para a cidade que irá trabalhar:
+Em seguida, abra um terminal em uma pasta do seu computador. No terminal, clone o repositório:
+```sh
+git clone <endereço-copiado>
+```
 
+Crie uma nova branch para a cidade que irá trabalhar:
 ```sh
 git checkout -b <sigladoestado>-<cidade>
 ```
 
 Vejamos um exemplo com a cidade Paulínia em São Paulo:
-
 ```sh
 git checkout -b sp-paulinia
 ```
 
 Se você usa Windows, baixe as [Ferramentas de Build do Visual Studio](https://visualstudio.microsoft.com/pt-br/downloads/#build-tools-for-visual-studio-2019) e execute o instalador. Durante a instalação, selecione a opção “Desenvolvimento para desktop com C++” e finalize o processo.
 
-Se você usa Linux ou Mac Os, pode simplesmente executar os seguintes comandos. Eles também estão descritos no README do projeto, na parte de configuração de ambiente.
+Se você usa Linux ou macOS, pode simplesmente executar os seguintes comandos. Eles também estão descritos no [README](TODO) do projeto, na parte de configuração de ambiente.
 
 ```py
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r data_collection/requirements.txt
+pip install -r data_collection/requirements-dev.txt
 pre-commit install
 ```
 
 Usuários de Windows devem executar os mesmo comandos, apenas trocando o `source .venv/bin/activate` por `.venv\Scripts\activate.bat`.
 
-## Conhecendo os raspadores 🕷
+[TODO: mencionar que depois de feito isso pela primeira vez, basta só ativar]
+
+## Conhecendo os raspadores já criados 🕷
 
 Todos os raspadores do projeto ficam na pasta [data_collection/gazette/spiders/](https://github.com/okfn-brasil/querido-diario/tree/main/data_collection/gazette/spiders). Navegue por diferentes arquivos e repare no que há de comum e diferente no código de cada um.
 
-Os nomes de todos os arquivos seguem o padrão: **uf_nome_da_cidade.py**.
+Repare que os nomes dos arquivos seguem o padrão: **uf_nome_da_cidade.py**. Ou seja, primeiro, temos a sigla da UF, seguido de _underline_ e nome da cidade. Tudo em minúsculas, sem espaços, acentos ou caracteres especiais e separando as palavras com _underline_.
 
-Ou seja, primeiro, temos a sigla da UF, seguido de _underline_ e nome da cidade. Tudo em minúsculas, sem espaços, acentos ou caracteres especiais e separando as palavras com _underline_.
-
-Para se familiarizar, sugerimos que você navegue por alguns exemplos paradigmáticos de Diários Oficiais:
-
-* **Paginação**: um bom exemplo de raspador onde as publicações estão separadas em várias páginas é o [da cidade de Manaus](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/am_manaus.py).
-
-* **Busca de datas**: outra situação comum é quando você precisa preencher um formulário e fazer uma busca de datas para acessar as publicações. É caso por exemplo do script [ba_salvador.py](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_salvador.py), que raspa as informações da capital baiana.
-
-* **Consulta via APIs**: pode ser também que ao analisar as requisições do site, você descubra uma API escondida, com dados dos documentos já organizados em um arquivo JSON, por exemplo. É o caso do raspador de [Natal](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/rn_natal.py). Na Escola de Dados, é possível encontrar um webinar sobre [raspagem de dados por meio de "APIs escondidas"](https://escoladedados.org/2021/05/como-descobrir-apis-escondidas-para-facilitar-a-raspagem-de-dados/), que pode ser útil para quem está começando.
+Repare também que os raspadores começam sempre importando ferramentas similares, tem sempre uma linha `class` com o nome da cidade raspada, uma linha com `def parse`, uma com `yield Gazette`, algumas variáveis comuns como data, URL da cidade, o poder do diário (executivo, por exemplo), etc. Esse padrão faz parte do básico que todo raspador deve conter para fazer parte do Querido Diário. 
 
 ### Casos particulares
 
-Você talvez tenha reparado que alguns raspadores praticamente não possuem código e quase se repetem entre si. Neste caso, tratam-se de municípios que compartilham o mesmo sistema de publicação. Então, tratamos eles conjuntamente, modificando apenas o necessário de raspador para raspador, ao invés de repetir o mesmo código em cada arquivo. É o caso, por exemplo, de cidades em Santa Catarina como [**Abdon Batista**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_abdon_batista.py) e [**Agrolândia**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_agrolandia.py).
+Você talvez tenha reparado que alguns raspadores praticamente não possuem código e quase se repetem entre si. Neste caso, tratam-se de municípios que compartilham o mesmo sistema de publicação, então tratamos eles conjuntamente, modificando apenas o necessário de raspador para raspador. 
 
-Existem raspadores que não têm nome de cidade, pois diversos municípios usam a mesma plataforma para publicar seus Diários Oficiais. São normalmente sites de associações de municípios. É o caso de [**ba_associacao_municipios.py**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_associacao_municipios.py).
+É o caso, por exemplo, de cidades em Santa Catarina como [**Abdon Batista**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_abdon_batista.py) e [**Agrolândia**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/sc_agrolandia.py). 
 
-Mas para uma primeira contribuição não se preocupe com esses casos particulares. Vamos voltar ao nosso exemplo e ver como construir um raspador completo para apenas uma cidade.
+Existem raspadores que não têm nome de cidade, estes são normalmente de sites de associações de municípios como o caso de [**ba_associacao_municipios.py**](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_associacao_municipios.py).
+
+Mas para uma primeira contribuição não se preocupe com esses casos particulares. Vamos voltar ao nosso exemplo e ver como construir um raspador para apenas uma cidade.
 
 ## Anatomia de um raspador 🧠
 
-Por padrão, todos os raspadores começam importando alguns pacotes. Vejamos quais são:
+Uma raspagem é a ação de caminhar em uma página _web_ extraíndo informações de interesse. No Querido Diário, um raspador é uma [classe em Python](https://www.youtube.com/watch?v=52ns4X7Ny6k&list=PLUukMN0DTKCtbzhbYe2jdF4cr8MOWClXc&index=41) que precisa executar determinadas rotinas nos sites que publicam Diários Oficiais. Vamos conhecer suas partes?
+
+### Pacotes
+
+Por padrão, todos os raspadores começam importando alguns pacotes que ajudam a tarefa de raspagem ser bem realizada. Eles são:
 
 * `import datetime`: pacote para lidar com datas.
+* `import scrapy`: pacote para raspagem de dados.
 * `from gazette.items import Gazette`: Chamamos de `Gazette` os arquivo de DOs encontrados pelos raspadores, ele irá armazenar também campos de metadados para cada publicação.
 * `from gazette.spiders.base import BaseGazetteSpider`: é o raspador (spider) base do projeto, que já traz algumas funcionalidades úteis.
 
-### Parâmetros iniciais
 
-Cada raspador traz uma [classe em Python](https://www.youtube.com/watch?v=52ns4X7Ny6k&list=PLUukMN0DTKCtbzhbYe2jdF4cr8MOWClXc&index=41), que executa determinadas rotinas para cada página dos sites que publicam Diários Oficiais. Todas as classes possuem pelo menos as informações básicas abaixo:
+### A classe e os atributos iniciais do raspador
+
+O nome da classe do raspador segue o seguinte padrão: 
+~~~py
+class <Uf><NomeDaCidade>Spider(BaseGazetteSpider):    
+#exemplo: class SpPauliniaSpider(BaseGazetteSpider)
+~~~
+
+E seus atributos iniciais são: 
 
 * `name`: Nome do raspador no mesmo padrão do nome do arquivo, sem a extensão. Exemplo: `sp_paulinia`.
 * `TERRITORY_ID`: código da cidade no IBGE. Confira o arquivo [`territories.csv`](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/resources/territories.csv) do projeto para descobrir o código da sua cidade. Exemplo: `3536505`.
 * `allowed_domains`: Domínios nos quais o raspador irá atuar. Tenha atenção aos colchetes. Eles indicam que se trata de uma lista, ainda que tenha apenas um elemento. Exemplo: `["paulinia.sp.gov.br"]`
 * `start_urls`: lista com URLs de início da navegação do raspador (normalmente apenas uma). A resposta dessa requisição inicial é encaminhada para a variável `response`, do método padrão do Scrapy chamado `parse`. Veremos mais sobre isso em breve. Novamente, atenção aos colchetes. Exemplo:`["http://www.paulinia.sp.gov.br/semanarios/"]`
-* `start_date`: Representação de data no formato ano, mês e dia (YYYY, M, D) com `datetime.date`. É a data inicial da publicação do Diário Oficial no sistema questão, ou seja, a data da primeira publicação disponível online. Encontre esta data pesquisando e a insira manualmente nesta variável. Exemplo: `datetime.date(2017, 4, 3)`.
+* `start_date`: Representação de data no formato ano, mês e dia (AAAA, M, D) com `datetime.date`. É a data inicial da publicação do Diário Oficial no sistema questão, ou seja, a data da primeira publicação disponível online. Encontre esta data pesquisando e a insira manualmente nesta variável. Exemplo: `datetime.date(2011, 1, 3)`.
 
-### Parâmetros de saída
+**(!)** Todos estes atributos devem ser preenchidos por você manualmente. São informações (também chamadas de metadados) associadas ao municipio sendo raspado e vocẽ pode achá-las olhando o site do município escolhido. 
 
-Além disso, cada raspador também precisa retornar algumas informações por padrão. Isso acontece usando a expressão `yield` nos itens criados do tipo `Gazette`.
+### Dados a serem coletados
+
+Se o objetivo da raspagem é obter certos dados, precisamos saber quais informações que são de interesse para o Querido Diário obter, onde temos que chegar. Os dados alvo são:   
 
 * `date`: A data da publicação do diário.
 * `file_urls`: Retorna as URLs da publicação do DO como uma lista. Um documento pode ter mais de uma URL, mas não é algo comum.
@@ -140,45 +141,67 @@ Além disso, cada raspador também precisa retornar algumas informações por pa
 * `is_extra_edition`: Sinalizamos aqui se é uma edição extra do Diário Oficial ou não. Edições extras são edições completas do diário que são publicadas fora do calendário previsto.
 * `edition_number`: Número da edição do DO em questão.
 
-Vejamos agora nosso código de exemplo.
+### Método `_parse_()`
 
+É aqui onde a magia acontece. É dentro do método _parse_() que você adicionará as linhas de código necessárias buscando "ensinar" seu programa a obter as informações listadas no tópico anterior, dos dados a serem coletados. Desenvolver este método é o principal desafio aqui. Para resolvê-lo, você precisa buscar entender o padrão de como o site do município escolhido publica seus diários e pra isso deve saber como inspecionar uma página web e provavelmente precisará de conhecimentos em Expressões Regulares (RegEx) que veremos mais a diante neste tutorial.
+
+### Esqueleto
+
+Juntando o conteúdo dos tópicos anteriores (a importação de pacotes, os atributos iniciais, os dados desejados e o método de raspagem), podemos dizer que o esqueleto mais básico de um raspador é [assim](uf_modelo.py).
+
+Mas, claro, eles não precisam ser estritamente assim. Outros métodos ou pacotes podem ser necessários para cumprir a tarefa de raspagem. É comum o pacote `re` de Python, para expressões regulares, ser utilizado. 
+
+Outros métodos para auxiliar o `parse()` também podem existir. Um exemplo é o método `_extract_edition_number()` presente no [raspador de Manaus](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/am_manaus.py). Neste caso, o `parse()` delega a este método auxiliar a tarefa específica de colher o número de edição do diário.  
+
+### Conhecendo algumas estratégias de raspagem
+
+Apesar dos raspadores funcionarem a depender de como é o site de publicação de diários, alguns sites podem ter organização parecida e já conhecer alguns pode te ajudar. Para se familiarizar com estratégias de raspagem diversas exigidas por sites diferentes, sugerimos que você navegue por alguns exemplos paradigmáticos de Diários Oficiais:
+
+* **Paginação**: um bom exemplo de raspador onde as publicações estão separadas em várias páginas é o [da cidade de Manaus](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/am_manaus.py). Veja no [site de Manaus](http://dom.manaus.am.gov.br/diario-oficial-de-manaus) como é a paginação visualmente.
+
+* **Busca de datas**: outra situação comum é quando você precisa preencher um formulário e fazer uma busca de datas para acessar as publicações. É caso por exemplo do [diário de Salvador](http://www.dom.salvador.ba.gov.br/#). Veja como foi feito um _script_ para esse tipo de situação: [ba_salvador.py](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/ba_salvador.py)
+
+* **Consulta via APIs**: pode ser também que ao analisar as requisições do site, você descubra uma API escondida, com dados dos documentos já organizados em um arquivo JSON, por exemplo. É o caso do raspador de [Natal](https://github.com/okfn-brasil/querido-diario/blob/main/data_collection/gazette/spiders/rn_natal.py). Na Escola de Dados, é possível encontrar um webinar sobre [raspagem de dados por meio de "APIs escondidas"](https://escoladedados.org/2021/05/como-descobrir-apis-escondidas-para-facilitar-a-raspagem-de-dados/), que pode ser útil para quem está começando. [TODO: adicionar link do site de publicação]
+ 
 ## Hello world: faça sua primeira requisição 👋
 
 O Scrapy começa fazendo uma requisição para a URL definida no parâmetro `start_urls`. A resposta dessa requisição vai para o método padrão `parse`, que irá armazenar a resposta na variável `response`.
 
-Então, uma forma de fazer um "Hello, world!" no projeto Querido Diário seria com um código como este abaixo.
+Então, uma forma de fazer um "Hello, world!" no projeto Querido Diário seria com um código como este abaixo que acessa o site do município de Paulínia-SP e baixa apenas um diário, o do dia de hoje.
 
 ```python
 import datetime
+
+import scrapy
+
 from gazette.items import Gazette
 from gazette.spiders.base import BaseGazetteSpider
 
 class SpPauliniaSpider(BaseGazetteSpider):
     name = "sp_paulinia"
-    TERRITORY_ID = "2905206"
-    start_date = datetime.date(2010, 1, 4)
+    TERRITORY_ID = "3536505"
+    start_date = datetime.date(2011, 1, 3)
     allowed_domains = ["paulinia.sp.gov.br"]
     start_urls = ["http://www.paulinia.sp.gov.br/semanarios/"]
 
     def parse(self, response):
         yield Gazette(
-            date=datetime.date.today(),
+            date=datetime.date.today(),     #dia de hoje
             file_urls=[response.url],
-            power="executive",
+            power="executive"
         )
 ```
-
-O código baixa o HTML da URL inicial, mas não descarrega nenhum DO de fato. Definimos este parâmetro como o dia de hoje, apenas para ter uma versão básica operacional do código. Porém, ao construir um raspador real, neste parâmetro você deverá indicar as datas corretas das publicações.
-
-De todo modo, isso dá as bases para você entender como os raspadores operam e por onde começar a desenvolver o seu próprio.
-
 Para rodar o código, você pode seguir as seguintes etapas:
 
-1. Crie um arquivo na pasta `data_collection/gazette/spiders/` do repositório criado no seu computador a partir do seu fork do Querido Diário;
-2. Abra o terminal na raíz do projeto;
+1. Na pasta `data_collection/gazette/spiders/` do repositório criado no seu computador a partir do seu fork do Querido Diário, crie um arquivo com o código acima e o nomeie conforme o modelo de nomes (**uf_nome_da_cidade.py**);
+2. Abra o terminal na raiz do projeto;
 3. Ative o ambiente virtual, caso não tenha feito antes, como indicado na seção _"[Configurando um ambiente de desenvolvimento](#configurando-um-ambiente-de-desenvolvimento)"_ (`source .venv/bin/activate`, por exemplo);
 4. No terminal, vá para a pasta `data_collection`;
 5. No terminal, rode o raspador com o comando `scrapy crawl nome_do_raspador` (nome que está no atributo `name` da classe do raspador). Ou seja, no exemplo rodamos: `scrapy crawl sp_paulinia`.
+
+Ao executar, poderá verificar em `/data_collection/data` que o código baixou o HTML da URL inicial, mas não descarregou nenhum DO de fato. Definimos este parâmetro como o dia de hoje, apenas para ter uma versão básica operacional do código. Porém, ao construir um raspador real, neste parâmetro você deverá indicar as datas corretas do início das publicações.
+
+De todo modo, isso dá as bases para você entender como os raspadores operam e por onde começar a desenvolver o seu próprio, uma vez que agora você já conseguiu coletar a página dos Diários Oficiais no site pra prefeitura. 
 
 ## Dissecando o log 📄
 
@@ -338,7 +361,7 @@ Para ajudar a debugar eventuais problemas na construção do código, você pode
 
 
 ### Rodando o raspador
-Para rodar o raspador, execute o seguinte comando no terminal:
+Para rodar o raspador, garanta que esteja na pasta `data_collection` e execute o seguinte comando no terminal:
 
 ```
 scrapy crawl nome_do_raspador
@@ -349,7 +372,7 @@ No caso acima, seria:
 ```
 scrapy crawl sp_paulinia
 ```
-O comando acima irá baixar os arquivos dos Diários Oficiais irá a pasta `data`. Durante o processo de desenvolvimento, muitas vezes é útil usar também os seguintes parâmetros adicionais na hora de rodar o raspador:
+O comando acima baixará os arquivos dos Diários Oficiais. Eles irão para a pasta `data`. Durante o processo de desenvolvimento, muitas vezes é útil usar também os seguintes parâmetros adicionais na hora de rodar o raspador:
 
 - `-s FILES_STORE=""`: Testar o raspador sem baixar nenhum arquivo adicionando. Isso é útil para testar rápido se todas as requisições estão funcionando.
 
@@ -374,3 +397,17 @@ Normalmente adicionar apenas um raspador necessita apenas de um único commit. M
 Uma boa prática é sempre atualizar a ramificação (_branch_) que você está desenvolvendo com o que está na `main` atualizada do projeto. Assim, se o projeto teve atualizações, você pode resolver algum conflito antes mesmo de fazer o Pull Request.
 
 Qualquer dúvida, abra o seu Pull Request em modo de rascunho (_draft_) e relate suas dúvidas para que pessoas do projeto tentem te ajudar 😃. O [canal de discussões no Discord](https://discord.com/invite/nDc9p4drm4) também é aberto para tirar dúvidas e trocar ideias.
+
+
+
+BACKLOG
+
+# Referencias extras
+Se você prefere uma apresentação sobre o projeto em vídeo, confira o workshop [Querido Diário: hoje eu tornei um Diário Oficial acessível](https://escoladedados.org/coda2020/workshop-querido-diario/) da Ana Paula Gomes no [Coda.Br 2020](https://escoladedados.org/coda2020). Ainda que mudanças recentes possam ter alterado detalhes apresentados na oficina, o vídeo é uma ótima complementação a este tutorial. Você pode utilizar a *timestamp* na descrição do vídeo para assistir apenas trechos de seu interesse.
+
+adicionar https://github.com/okfn-brasil/querido-diario/issues/501
+
+[TODO: indicar o curso, o modulo do Giulio aberto no yt]
+
+# Outras formas de participar
+Existem formas de colaborar com o Querido Diário sem precisar programar. Você pode participar do [Censo](https://censo.ok.org.br/), por exemplo, e ajudar a mapear os Diários Oficiais de todos os municípios brasileiros.

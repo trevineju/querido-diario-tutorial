@@ -11,10 +11,10 @@ from gazette.spiders.base import BaseGazetteSpider
 
 class SpPauliniaSpider(BaseGazetteSpider):
     name = "sp_paulinia_v2"
-    TERRITORY_ID = "2905206"
-    start_date = datetime.date(2010, 1, 4)
+    TERRITORY_ID = "3536505"
     allowed_domains = ["www.paulinia.sp.gov.br"]
     start_urls = ["http://www.paulinia.sp.gov.br/semanarios"]
+    start_date = datetime.date(2011, 1, 3)
 
     def parse(self, response):
         years = response.css("div.col-md-1")
@@ -72,9 +72,9 @@ class SpPauliniaSpider(BaseGazetteSpider):
             # que arquivos baixados sofram redirecionamento, é possível colocar o link
             # "falso" já no item `Gazette` e o projeto vai conseguir baixar o documento
             yield Gazette(
+                power="executive",
+                file_urls=[response.urljoin(document_href)],
                 date=gazette_date,
                 edition_number=edition_number,
-                file_urls=[response.urljoin(document_href)],
                 is_extra_edition=is_extra_edition,
-                power="executive",
             )
